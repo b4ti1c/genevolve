@@ -13,7 +13,7 @@ const Net = require('genevolve/network/net');
 class Adder extends Person {
     constructor(opt_serializedGenome) { super(opt_serializedGenome); }
 
-    createGenome() {
+    initGenome() {
         this.net = new Net({
             numOfInputs: 2,
             numOfOutputs: 2,

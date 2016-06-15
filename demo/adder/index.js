@@ -11,7 +11,7 @@ console.log('INITIAL')
 adder.testAndPrintPopulation([0.05, 0.01]);
 
 for(let i = 0; i < 3000; i++){
-    console.log('GENERATION ' + i);
+    if (i % 50 == 0) console.log('GENERATION ' + i);
     adder.evolve();
 }
 console.log('FINAL');
