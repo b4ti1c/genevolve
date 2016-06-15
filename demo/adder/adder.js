@@ -28,29 +28,28 @@ class Adder extends Person {
 
     test(inputs) { return this.net.ignite(inputs); }
 
-    getFitness(opt_inputs) {
-        const inputs = _.assign({
-            num1: Math.random(),
-            num2: Math.random()
-        }, opt_inputs || {});
-
-        const netOutput = this.net.ignite([inputs.num1, inputs.num2]);
-        const expectedOutput1 = inputs.num1 + inputs.num2;
-        const expectedOutput2 = inputs.num1 - inputs.num2;
+    getFitness(data) {
+        const netOutput = this.test(data.inputs);
 
         //We sum the Mean Square Error for both the sum and the difference
-        const fitness = Math.pow(expectedOutput1 - netOutput[0], 2) +
-                        Math.pow(expectedOutput2 - netOutput[1], 2);
+        const fitness = Math.pow(data.outputs[0] - netOutput[0], 2) +
+                        Math.pow(data.outputs[1] - netOutput[1], 2);
 
         return fitness;
     }
 
-    static compare(adderA, adderB) {
-        return adderA.getFitness({num1: 0.2, num2: 0.3}) - adderB.getFitness({num1: 0.2, num2: 0.3});
+    static compare(fitnessA, fitnessB) {
+        return fitnessA - fitnessB;
     }
 
-    static compareFitnesses(fitnessA, fitnessB) {
-        return fitnessA - fitnessB;
+    static TestData() {
+        const num1 = Math.random();
+        const num2 = Math.random();
+
+        return {
+            inputs: [num1, num2],
+            outputs: [num1 + num2, num1 - num2]
+        };
     }
 }
 
