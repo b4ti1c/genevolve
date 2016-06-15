@@ -1,0 +1,26 @@
+{
+  "name": "genevolve",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "chance": "^1.0.3",
+    "colors": "^1.1.2",
+    "lodash": "^4.13.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "rm -f node_modules/genevolve && ln -s ../lib/ node_modules/genevolve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/batilc1/genevolve.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/batilc1/genevolve/issues"
+  },
+  "homepage": "https://github.com/batilc1/genevolve#readme"
+}
