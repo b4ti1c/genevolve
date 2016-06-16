@@ -1,8 +1,8 @@
 'use strict';
 
-const Evolver = require('genevolve/genetic/evolver');
-const Adder = require('./adder');
 const _ = require('lodash');
+const Evolver = require('genevolve').Evolver;
+const Adder = require('./adder');
 
 
 var adder = new Evolver({Person: Adder});
