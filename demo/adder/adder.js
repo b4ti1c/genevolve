@@ -17,22 +17,20 @@ class Adder extends Person {
         this.net = new Net({
             numOfInputs: 2,
             numOfOutputs: 2,
+            neuronConfig: {
+                weightGenerator: Adder.generateGene,       //Initialize weights randomly between [-1, 1]
+                hasBias: false,                            //No bias for adder neuron
+                printPrecision: Adder.getPrintPrecision(), //Pretty-print configuration
+                neuronActivation: 'as-is'                  //Output response of neuron to energy from inputs
+            }
         }); 
-    }
-
-    static neuronConfiguration() {
-        return {
-            bias: false,
-            printPrecision: 2,
-            //Initialize weights randomly between [-1, 1]
-            neuronInit: _ => Math.random() * 2 - 1,
-            activator: 'as-is'
-        }
     }
 
     getGenome() { return this.net.serializeGenome(); }
 
     setGenome(gene) { this.net.deserializeGenome(gene); }
+
+    genomeToString() { return this.net.toString(); }
 
     test(inputs) { return this.net.ignite(inputs); }
 
@@ -49,6 +47,10 @@ class Adder extends Person {
     static compare(fitnessA, fitnessB) {
         return fitnessA - fitnessB;
     }
+
+    static generateGene() { return Math.random() * 2 - 1; }
+
+    static getPrintPrecision() { return 2; }
 
     static TestData() {
         const num1 = Math.random();
