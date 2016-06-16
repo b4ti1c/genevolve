@@ -1,8 +1,8 @@
 'use strict';
 
 const _ = require('lodash');
-const Person = require('genevolve/genetic/person');
-const Net = require('genevolve/network/net');
+const Person = require('genevolve').Person;
+const Net = require('genevolve').Net;
 
 
 /**
