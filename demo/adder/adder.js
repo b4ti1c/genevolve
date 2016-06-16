@@ -16,9 +16,7 @@ class Adder extends Person {
     initGenome() {
         this.net = new Net({
             numOfInputs: 2,
-            numOfOutputs: 2,
-            hiddenLayers: 0,
-            neuronsInHiddenLayer: 0
+            numOfOutputs: 5,
         }); 
     }
 
@@ -29,11 +27,11 @@ class Adder extends Person {
     test(inputs) { return this.net.ignite(inputs); }
 
     getFitness(data) {
-        const netOutput = this.test(data.inputs);
+        const netOutputs = this.test(data.inputs);
 
-        //We sum the Mean Square Error for both the sum and the difference
-        const fitness = Math.pow(data.outputs[0] - netOutput[0], 2) +
-                        Math.pow(data.outputs[1] - netOutput[1], 2);
+        //We sum the Mean Square Error between expected output and net output
+        const fitness = netOutputs.reduce((mse, output, index) => 
+            mse + Math.pow(output - data.outputs[index], 2), 0);
 
         return fitness;
     }
@@ -48,7 +46,7 @@ class Adder extends Person {
 
         return {
             inputs: [num1, num2],
-            outputs: [num1 + num2, num1 - num2]
+            outputs: [num1 + num2, num1 - num2, num1 * 2, num2 / 2, num1 + num2 * 3]
         };
     }
 }
