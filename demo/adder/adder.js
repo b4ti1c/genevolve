@@ -7,7 +7,7 @@ const Net = require('genevolve/network/net');
 
 /**
  * Input: 2 numbers
- * Operation: Calculate both the sum and the difference of input numbers
+ * Operation: Calculate linear combinations of input numbers
  * Output: 2 numbers - [<sum>, <dif>]
  */
 class Adder extends Person {
@@ -16,8 +16,18 @@ class Adder extends Person {
     initGenome() {
         this.net = new Net({
             numOfInputs: 2,
-            numOfOutputs: 5,
+            numOfOutputs: 2,
         }); 
+    }
+
+    static neuronConfiguration() {
+        return {
+            bias: false,
+            printPrecision: 2,
+            //Initialize weights randomly between [-1, 1]
+            neuronInit: _ => Math.random() * 2 - 1,
+            activator: 'as-is'
+        }
     }
 
     getGenome() { return this.net.serializeGenome(); }
@@ -46,7 +56,7 @@ class Adder extends Person {
 
         return {
             inputs: [num1, num2],
-            outputs: [num1 + num2, num1 - num2, num1 * 2, num2 / 2, num1 + num2 * 3]
+            outputs: [num1 + num2, num1 - num2]
         };
     }
 }
