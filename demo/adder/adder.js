@@ -21,7 +21,7 @@ class Adder extends Person {
                 weightGenerator: Adder.generateGene,       //Initialize weights randomly between [-1, 1]
                 hasBias: false,                            //No bias for adder neuron
                 printPrecision: Adder.getPrintPrecision(), //Pretty-print configuration
-                neuronActivation: 'as-is'                  //Output response of neuron to energy from inputs
+                neuronActivation: 'linear'                  //Output response of neuron to energy from inputs
             }
         }); 
     }
